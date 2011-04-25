@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 #include <QApplication>
+#include <QTime>
 
 #include "mainwindow.h"
 #include <iostream>

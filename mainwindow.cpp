@@ -17,6 +17,12 @@ MainWindow::MainWindow()
     QWidget *bottomFiller = new QWidget;
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    thread = new CheckThread();
+    connect(thread, SIGNAL(getPassword()), this, SLOT(goodPassword()));
+    connect(thread, SIGNAL(getBadPassword()), this, SLOT(badPassword()));
+
+    thread->checkPassword();
+
     QVBoxLayout *layout = new QVBoxLayout;
     layout->setMargin(5);
     layout->addWidget(topFiller);
@@ -44,13 +50,13 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void MainWindow::reloadKeyboard()
 {
-    usb_keyboard.init();
     infoLabel->setText(QString("Keyboard reloaded"));
+    thread->reinitializeController();
 }
 
 void MainWindow::open()
 {
-    infoLabel->setText(usb_keyboard.getInput());
+    infoLabel->setText(tr("Menu załaduj kod"));
 }
 
 
@@ -58,21 +64,33 @@ void MainWindow::open()
 void MainWindow::about()
 {
     infoLabel->setText(tr("Invoked <b>Help|About</b>"));
-    QMessageBox::about(this, tr("About Menu"),
-            tr("The <b>Menu</b> example shows how to create "
-               "menu-bar menus and context menus."));
+}
+
+void MainWindow::badPassword()
+{
+    QMessageBox::about(this, tr("Password"),
+            tr("Bad password"));
+}
+
+void MainWindow::goodPassword()
+{
+    QMessageBox::about(this, tr("Password"),
+            tr("Good password"));
+}
+
+void MainWindow::resetKeyboard()
+{
+    QMessageBox::about(this, tr("Password has ben checked"),
+            tr("Ble"));
 }
 
 void MainWindow::aboutQt()
 {
-    infoLabel->setText(tr("Invoked <b>Help|About Qt</b>"));
+    infoLabel->setText(tr("About Qt?"));
 }
 
 void MainWindow::createActions()
 {
-    CheckThread thread;
-    connect(thread, SIGNAL(getPassword()), this, SLOT(open()));
-
     newAct = new QAction(tr("&Reset keyboard"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("You could reset USB keyboard module"));
