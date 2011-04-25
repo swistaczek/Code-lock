@@ -1,10 +1,14 @@
 HEADERS       = mainwindow.h \
                 keyboard.h \
-                hidapi.h
+                hidapi.h \
+    test.h \
+    checkthread.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
                 keyboard.cpp \
-                hid-libusb.c
+                hid-libusb.c \
+    test.cpp \
+    checkthread.cpp
 
 DESTDIR = bin/
 LIBS += -L./BIN

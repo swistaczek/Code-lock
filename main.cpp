@@ -49,12 +49,10 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-//    Keyboard a;
-//    cout << a.getInput().toStdString();
-//    getchar();
-//    getchar();
 
     QApplication app(argc, argv);
+    qsrand(QTime::currentTime().elapsed());
+
     MainWindow window;
     window.show();
 

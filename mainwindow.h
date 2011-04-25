@@ -43,6 +43,7 @@
 
 #include <QMainWindow>
 #include <keyboard.h>
+#include <checkthread.h>
 
 QT_BEGIN_NAMESPACE
 class QAction;

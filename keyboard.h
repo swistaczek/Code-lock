@@ -30,7 +30,6 @@ private:
 signals:
 
 public slots:
-
 };
 
 #endif // KEYBOARD_H

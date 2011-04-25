@@ -70,6 +70,9 @@ void MainWindow::aboutQt()
 
 void MainWindow::createActions()
 {
+    CheckThread thread;
+    connect(thread, SIGNAL(getPassword()), this, SLOT(open()));
+
     newAct = new QAction(tr("&Reset keyboard"), this);
     newAct->setShortcuts(QKeySequence::New);
     newAct->setStatusTip(tr("You could reset USB keyboard module"));
