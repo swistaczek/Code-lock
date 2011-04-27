@@ -12,7 +12,6 @@ void CheckThread::checkPassword(){
 void CheckThread::run(){
 
     QString input;
-
     while(true){
         input = this->usb_keyboard.getInput();
         cout << "Wpisano: " << input.toStdString() << "\n";
