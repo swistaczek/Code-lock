@@ -74,6 +74,8 @@ void MainWindow::badPassword()
 
 void MainWindow::goodPassword()
 {
+    RelayB rb("/dev/ttyUSB0");
+    rb.revertPort(0);
     QMessageBox::about(this, tr("Password"),
             tr("Good password"));
 }

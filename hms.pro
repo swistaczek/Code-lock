@@ -2,13 +2,22 @@ HEADERS       = mainwindow.h \
                 keyboard.h \
                 hidapi.h \
     test.h \
-    checkthread.h
+    checkthread.h \
+    crc8.h \
+    rb.h \
+    rs232.h \
+    relayb.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
                 keyboard.cpp \
                 hid-libusb.c \
-    test.cpp \
-    checkthread.cpp
+                crc8.c \
+                rb.c \
+                rs232.c \
+                RelayBoard.c \
+                test.cpp \
+                checkthread.cpp \
+    relayb.cpp
 
 DESTDIR = bin/
 LIBS += -L./BIN

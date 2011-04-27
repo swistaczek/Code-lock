@@ -13,7 +13,7 @@ void CheckThread::run(){
 
     QString input;
 
-    for(int i = 0; i<1000; i++){
+    while(true){
         input = this->usb_keyboard.getInput();
         cout << "Wpisano: " << input.toStdString() << "\n";
         if(input == "123"){

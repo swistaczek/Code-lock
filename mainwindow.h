@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <keyboard.h>
 #include <checkthread.h>
+#include <relayb.h>
 
 QT_BEGIN_NAMESPACE
 class QAction;
