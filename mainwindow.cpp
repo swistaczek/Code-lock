@@ -65,12 +65,12 @@ void MainWindow::open()
 
 void MainWindow::readLogs(){
     infoLabel->setText(tr("Read logs"));
-    createConnection();
     logView logs;
-    QSqlTableModel model;
-    logs.initializeModel(&model);
-    QTableView *view1 = logs.createView(&model, QObject::tr("Table Model (View 1)"));
-    view1->show();
+}
+
+void MainWindow::truncateLogs(){
+    infoLabel->setText(tr("Logs cleared"));
+    clearLogDb();
 }
 
 void MainWindow::about()
@@ -88,15 +88,15 @@ void MainWindow::enteredValue(QString value)
 
 void MainWindow::badPassword()
 {
-    QMessageBox::about(this, tr("Password"),
-            tr("Bad password"));
+//    QMessageBox::about(this, tr("Password"),
+//            tr("Bad password"));
 }
 
 void MainWindow::goodPassword()
 {
     relayboard.revertPort(0);
-    QMessageBox::about(this, tr("Password"),
-            tr("Good password"));
+//    QMessageBox::about(this, tr("Password"),
+//            tr("Good password"));
 }
 
 void MainWindow::resetKeyboard()
@@ -127,6 +127,11 @@ void MainWindow::createActions()
     logsAct->setStatusTip(tr("Read recent data logs"));
     connect(logsAct, SIGNAL(triggered()), this, SLOT(readLogs()));
 
+    clearLogsAct = new QAction(tr("&Clear logs"), this);
+    clearLogsAct->setShortcuts(QKeySequence::Open);
+    clearLogsAct->setStatusTip(tr("Clear recent data logs"));
+    connect(clearLogsAct, SIGNAL(triggered()), this, SLOT(truncateLogs()));
+
     exitAct = new QAction(tr("E&xit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
@@ -148,6 +153,8 @@ void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(logsAct);
+    fileMenu->addAction(clearLogsAct);
+    fileMenu->addSeparator();
     fileMenu->addAction(newAct);
     fileMenu->addAction(openAct);
     fileMenu->addSeparator();

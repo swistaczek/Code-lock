@@ -18,6 +18,8 @@ signals:
 
 public slots:
 
+private:
+     QSqlTableModel *model;
 };
 
 #endif // LOGVIEW_H

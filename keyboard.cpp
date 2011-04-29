@@ -22,11 +22,6 @@ void Keyboard::init(){
     hid_read(this->handle, buf, sizeof(buf));
 }
 
-QString Keyboard::returnString(){
-    QString tekst = "ziemniaczek";
-    return tekst;
-}
-
 char Keyboard::getChar(int buffer){
     switch(buffer){
         case 0x62:

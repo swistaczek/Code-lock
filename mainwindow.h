@@ -34,6 +34,8 @@ private slots:
     void badPassword();
     void goodPassword();
     void resetKeyboard();
+    void truncateLogs();
+
     void aboutQt();
 
 private:
@@ -46,10 +48,12 @@ private:
     QAction *newAct;
     QAction *openAct;
     QAction *logsAct;
+    QAction *clearLogsAct;
     QAction *exitAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;
+
     CheckThread *thread;
 };
 

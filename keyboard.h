@@ -19,7 +19,6 @@ public:
     void productStrng();
     void init();
     char getChar(int);
-    QString returnString();
 private:
     hid_device *handle;
     wchar_t wstr[MAX_STR];

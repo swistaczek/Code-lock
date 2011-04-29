@@ -1,5 +1,5 @@
 #include "checkthread.h"
-
+#include <connection.h>
 CheckThread::CheckThread(QObject *parent) :
     QThread(parent)
 {
@@ -12,16 +12,21 @@ void CheckThread::checkPassword(){
 void CheckThread::run(){
 
     QString input;
+    QString name;
     forever{
         mutex.lock();
         input = this->usb_keyboard.getInput();
-        cout << "Wpisano: " << input.toStdString() << "\n";
+        cout << "Wpisano i zalogowano: " << input.toStdString() << "\n";
+        name = "KazioTestowy";
         if(input == "123" && stopped != true){
+            addEventToLog(input, name, "1");
             emit getPassword();
         }else{
+            addEventToLog(input, name, "0");
             emit getBadPassword();
         }
             msleep(200);
+
         mutex.unlock();
     }
 }

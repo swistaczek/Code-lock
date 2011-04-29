@@ -66,7 +66,8 @@ int main(int argc, char *argv[])
 {
 
     QApplication app(argc, argv);
-
+    createConnection();
+    //createDefaultSqlData();
     qsrand(QTime::currentTime().elapsed());
     MainWindow window;
     window.show();

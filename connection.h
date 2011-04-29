@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <iostream>
 
 
 static bool createConnection()
@@ -22,17 +23,33 @@ static bool createConnection()
         return false;
     }
 
-    QSqlQuery query;
-    query.exec("create table person (id int primary key, "
-               "firstname varchar(20), lastname varchar(20))");
-    query.exec("insert into person values(101, 'Danny', 'Young')");
-    query.exec("insert into person values(102, 'Christine', 'Holand')");
-    query.exec("insert into person values(103, 'Lars', 'Gordon')");
-    query.exec("insert into person values(104, 'Roberto', 'Robitaille')");
-    query.exec("insert into person values(105, 'Maria', 'Papadopoulos')");
-
     return true;
 }
+
+static bool createDefaultSqlData(){
+    QSqlQuery query;
+    query.exec("create table logs (id int primary key, "
+               "code varchar(20), name varchar(20), date datetime, success int)");
+    query.exec("insert into logs values(1, '123', 'Piotrek Room 3', datetime('now'), 1)");
+    query.exec("insert into logs values(2, '65566', 'Waldek Room 31', datetime('now'), 0)");
+    return 0;
+}
+
+static bool addEventToLog(QString code, QString name, QString success){
+    QSqlQuery query;
+    QString nquery;
+    std::cout << nquery.toStdString();
+    nquery = "insert into logs (code,name,date,success) values ('" + code + "','" + name +"', datetime('now'), '" + success +"')";
+    query.exec(nquery);
+    return 0;
+}
+
+static bool clearLogDb(){
+    QSqlQuery query;
+    query.exec("DELETE FROM logs");
+    return 0;
+}
+
 //! [0]
 
 #endif
