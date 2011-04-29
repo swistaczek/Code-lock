@@ -5,8 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <rb.h>
-
+extern "C" {
+    #include <rb.h>
+}
 class RelayB : public QObject
 {
     Q_OBJECT

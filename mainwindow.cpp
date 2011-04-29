@@ -18,8 +18,11 @@ MainWindow::MainWindow()
     bottomFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     thread = new CheckThread();
+    rb = new RelayB("/dev/ttyUSB0");
+
     connect(thread, SIGNAL(getPassword()), this, SLOT(goodPassword()));
     connect(thread, SIGNAL(getBadPassword()), this, SLOT(badPassword()));
+    connect(thread, SIGNAL(enteredValue(QString input)), this, SLOT(enteredValue(QString input)));
 
     thread->checkPassword();
 
@@ -33,10 +36,10 @@ MainWindow::MainWindow()
     createActions();
     createMenus();
 
-    QString message = tr("A context menu is available by right-clicking");
+    QString message = tr("CodeLock by Ernest Bursa");
     statusBar()->showMessage(message);
 
-    setWindowTitle(tr("Menus"));
+    setWindowTitle(tr("CodeLock 0.1"));
     setMinimumSize(160, 160);
     resize(480, 320);
 }
@@ -56,14 +59,22 @@ void MainWindow::reloadKeyboard()
 
 void MainWindow::open()
 {
-    infoLabel->setText(tr("Menu załaduj kod"));
+    infoLabel->setText(tr("Blah"));
 }
 
 
 
 void MainWindow::about()
 {
-    infoLabel->setText(tr("Invoked <b>Help|About</b>"));
+    infoLabel->setText(tr("Find source code @ http://github.com/swistaczek"));
+    QMessageBox::about(this, tr("About"),
+            tr("CodeLock software could be used as code lock and home maintance software. <br /> Author: <strong>Ernest Bursa</strong> <br />Find source code at <strong>http://github.com/swistaczek</strong> "));
+}
+
+void MainWindow::enteredValue(QString value)
+{
+    QMessageBox::about(this, tr("Entered value"),
+            value);
 }
 
 void MainWindow::badPassword()
@@ -74,7 +85,6 @@ void MainWindow::badPassword()
 
 void MainWindow::goodPassword()
 {
-    RelayB rb("/dev/ttyUSB0");
     rb.revertPort(0);
     QMessageBox::about(this, tr("Password"),
             tr("Good password"));
@@ -82,8 +92,8 @@ void MainWindow::goodPassword()
 
 void MainWindow::resetKeyboard()
 {
-    QMessageBox::about(this, tr("Password has ben checked"),
-            tr("Ble"));
+    QMessageBox::about(this, tr("Ok"),
+            tr("Keyboard has ben reloaded"));
 }
 
 void MainWindow::aboutQt()

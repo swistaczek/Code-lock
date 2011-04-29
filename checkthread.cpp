@@ -24,6 +24,12 @@ void CheckThread::run(){
     }
 }
 
+void CheckThread::getValue(){
+    QString input;
+    input = this->usb_keyboard.getInput();
+    emit enteredValue(input);
+}
+
 void CheckThread::reinitializeController(){
     this->usb_keyboard.init();
 }

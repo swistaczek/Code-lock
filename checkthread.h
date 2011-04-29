@@ -14,9 +14,12 @@ public:
     //~CheckThread();
     void checkPassword();
     void reinitializeController();
+    void getValue();
+    Keyboard usb_keyboard;
 signals:
     void getPassword();
     void getBadPassword();
+    void enteredValue(QString);
 
 public slots:
     //void stopProcess();
@@ -25,7 +28,6 @@ protected:
 private:
     bool m_abort;
     QMutex mutex;
-    Keyboard usb_keyboard;
 };
 
 #endif // CHECKTHREAD_H

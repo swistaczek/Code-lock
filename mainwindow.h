@@ -28,6 +28,7 @@ private slots:
     void reloadKeyboard();
     void open();
     void about();
+    void enteredValue(QString);
     void badPassword();
     void goodPassword();
     void resetKeyboard();
@@ -47,6 +48,7 @@ private:
     QAction *aboutQtAct;
     QLabel *infoLabel;
     CheckThread *thread;
+    RelayB *rb;
 };
 
 

@@ -46,11 +46,11 @@
 
 struct Packet_t
 {
-	uint8_t preamble;
-	uint8_t address;
-	uint8_t command;
-	uint8_t argument;
-	uint8_t crc;
+        uint8_t preamble;
+        uint8_t address;
+        uint8_t command;
+        uint8_t argument;
+        uint8_t crc;
 };
 uint8_t RelayBoardGet(uint8_t adress,uint8_t* value);
 //Sets the relay value to the board
