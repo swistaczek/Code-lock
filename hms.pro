@@ -6,7 +6,9 @@ HEADERS       = mainwindow.h \
     crc8.h \
     rb.h \
     rs232.h \
-    relayb.h
+    relayb.h \
+    connection.h \
+    logview.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
                 keyboard.cpp \
@@ -17,7 +19,8 @@ SOURCES       = mainwindow.cpp \
                 RelayBoard.c \
                 test.cpp \
                 checkthread.cpp \
-    relayb.cpp
+    relayb.cpp \
+    logview.cpp
 
 DESTDIR = bin/
 LIBS += -L./BIN
@@ -30,6 +33,7 @@ target.path = $$[QT_INSTALL_EXAMPLES]/mainwindows/menus
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS menus.pro
 sources.path = $$[QT_INSTALL_EXAMPLES]/mainwindows/menus
 INSTALLS += target sources
+QT += sql
 
 symbian {
     TARGET.UID3 = 0xA000CF66

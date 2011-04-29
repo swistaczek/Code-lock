@@ -16,6 +16,8 @@ public:
     void reinitializeController();
     void getValue();
     Keyboard usb_keyboard;
+    void pauseThread();
+    void resumeThread();
 signals:
     void getPassword();
     void getBadPassword();
@@ -27,6 +29,7 @@ protected:
     void run();
 private:
     bool m_abort;
+    bool stopped;
     QMutex mutex;
 };
 

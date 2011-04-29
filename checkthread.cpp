@@ -12,24 +12,35 @@ void CheckThread::checkPassword(){
 void CheckThread::run(){
 
     QString input;
-    while(true){
+    forever{
+        mutex.lock();
         input = this->usb_keyboard.getInput();
         cout << "Wpisano: " << input.toStdString() << "\n";
-        if(input == "123"){
+        if(input == "123" && stopped != true){
             emit getPassword();
         }else{
             emit getBadPassword();
         }
-        msleep(10);
+            msleep(200);
+        mutex.unlock();
     }
 }
 
 void CheckThread::getValue(){
     QString input;
     input = this->usb_keyboard.getInput();
+    cout << "Pobieranie na zadanie: " << input.toStdString() << "\n";
     emit enteredValue(input);
 }
 
 void CheckThread::reinitializeController(){
     this->usb_keyboard.init();
+}
+
+void CheckThread::pauseThread(){
+    stopped = 1;
+}
+
+void CheckThread::resumeThread(){
+    stopped = 0;
 }

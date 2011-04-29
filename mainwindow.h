@@ -5,6 +5,7 @@
 #include <keyboard.h>
 #include <checkthread.h>
 #include <relayb.h>
+#include <logview.h>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -27,6 +28,7 @@ protected:
 private slots:
     void reloadKeyboard();
     void open();
+    void readLogs();
     void about();
     void enteredValue(QString);
     void badPassword();
@@ -43,12 +45,12 @@ private:
     QActionGroup *alignmentGroup;
     QAction *newAct;
     QAction *openAct;
+    QAction *logsAct;
     QAction *exitAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;
     CheckThread *thread;
-    RelayB *rb;
 };
 
 
