@@ -1,7 +1,6 @@
 HEADERS       = mainwindow.h \
                 keyboard.h \
                 hidapi.h \
-    test.h \
     checkthread.h \
     crc8.h \
     rb.h \
@@ -16,8 +15,6 @@ SOURCES       = mainwindow.cpp \
                 crc8.c \
                 rb.c \
                 rs232.c \
-                RelayBoard.c \
-                test.cpp \
                 checkthread.cpp \
     relayb.cpp \
     logview.cpp

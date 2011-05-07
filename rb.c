@@ -1,10 +1,3 @@
-/*
- * rb.c
- *
- *  Created on: 2009-08-20
- *      Author: Kuba
- */
-
 #include "rb.h"
 #include "rs232.h"
 #include <stdio.h>

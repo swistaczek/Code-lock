@@ -1,6 +1,6 @@
 #include "keyboard.h"
 #include <stdio.h>
-
+#include <iostream>
 // Keyboard info:
 // idVendor           0x05d5
 // idProduct          0x0689
@@ -11,14 +11,20 @@ Keyboard::Keyboard(QObject *parent) : QObject(parent)
 }
 
 void Keyboard::init(){
+//    if(handle != NULL){
+//        hid_set_nonblocking(handle, 1);
+//        hid_close(handle); // no idea why this shit throws device to garbage
+//        printf("device closed\n");
+//    }
     this->handle = hid_open(0x05d5, 0x0689, NULL);
+
     if (!this->handle) {
-            printf("unable to open device\n");
+            printf("unable to open usb device\n");
     }
 
     memset(buf,0,sizeof(buf));
 
-    hid_set_nonblocking(this->handle, 1);
+    hid_set_nonblocking(this->handle, 0);
     hid_read(this->handle, buf, sizeof(buf));
 }
 
@@ -97,11 +103,19 @@ QString Keyboard::getInput(){
                         printf("Unable to read()\n");
         }
 
-        if(this->getChar(buf[2]) != NULL){
-            if(getChar(buf[2]) == 'E'){
+        //for (int i = 0; i < res; i++)
+        //                printf("buf[%d]: %d\n", i, buf[i]);
+
+        what_get = this->getChar(buf[2]);
+        if(what_get != NULL){
+            if(what_get == 'E'){
                 get_enter = true;
             }else{
-                input_grab += this->getChar(buf[2]);
+                if(what_get == 'D'){
+                    input_grab.truncate(input_grab.length()-1);
+                }else{
+                    input_grab += this->what_get;
+                }
             }
         }
     };

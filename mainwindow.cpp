@@ -10,7 +10,7 @@ MainWindow::MainWindow()
     QWidget *topFiller = new QWidget;
     topFiller->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
-    infoLabel = new QLabel(tr("State: online"));
+    infoLabel = new QLabel(tr("System ready"));
 
     infoLabel->setFrameStyle(QFrame::StyledPanel | QFrame::Sunken);
     infoLabel->setAlignment(Qt::AlignCenter);
@@ -40,8 +40,9 @@ MainWindow::MainWindow()
     statusBar()->showMessage(message);
 
     setWindowTitle(tr("CodeLock 0.1"));
-    setMinimumSize(160, 160);
-    resize(480, 320);
+    setMinimumSize(100, 100);
+    setMaximumSize(300,180);
+    resize(300,180);
 }
 
 void MainWindow::contextMenuEvent(QContextMenuEvent *event)
@@ -53,8 +54,8 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event)
 
 void MainWindow::reloadKeyboard()
 {
-    infoLabel->setText(QString("Keyboard reloaded"));
-    thread->reinitializeController();
+    QMessageBox::about(this, tr("Ok"), tr("Keyboard has ben reloaded"));
+    this->thread->reinitializeController();
 }
 
 void MainWindow::open()
@@ -88,12 +89,20 @@ void MainWindow::enteredValue(QString value)
 
 void MainWindow::badPassword()
 {
+    QDateTime dateTime = QDateTime::currentDateTime();
+    QString dateString = dateTime.toString();
+    QString message = tr(": Bad password");
+    statusBar()->showMessage(dateString + message);
 //    QMessageBox::about(this, tr("Password"),
 //            tr("Bad password"));
 }
 
 void MainWindow::goodPassword()
 {
+    QDateTime dateTime = QDateTime::currentDateTime();
+    QString dateString = dateTime.toString();
+    QString message = tr(": Good password");
+    statusBar()->showMessage(dateString + message);
     relayboard.revertPort(0);
 //    QMessageBox::about(this, tr("Password"),
 //            tr("Good password"));

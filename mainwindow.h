@@ -6,6 +6,8 @@
 #include <checkthread.h>
 #include <relayb.h>
 #include <logview.h>
+#include <QDateTime>
+
 
 QT_BEGIN_NAMESPACE
 class QAction;

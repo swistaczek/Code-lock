@@ -32,9 +32,6 @@
 
 
 #include "rs232.h"
-
-
-
 #ifdef __linux__   /* Linux */
 
 

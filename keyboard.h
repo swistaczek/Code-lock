@@ -26,6 +26,7 @@ private:
     unsigned char buf[256];
     QString input_grab;
     bool get_enter;
+    char what_get;
 signals:
 
 public slots:
