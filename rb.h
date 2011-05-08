@@ -1,10 +1,3 @@
-/*
- * rb.h
- *
- *  Created on: 2009-08-19
- *      Author: Kuba
- */
-
 #ifndef RB_H_
 #define RB_H_
 #include "crc8.h"

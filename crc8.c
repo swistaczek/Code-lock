@@ -1,9 +1,3 @@
-/*
- * crc.c
- *
- *  Created on: 2009-04-16
- *      Author: Kuba
- */
 #include"crc8.h"
 
 uint8_t CRC8(uint8_t input, uint8_t seed)	//Policz CRC dla jednego bajtu
