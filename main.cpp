@@ -48,20 +48,6 @@
 
 using namespace std;
 
-//int main(int argc, char *argv[])
-//{
-
-//    QApplication app(argc, argv);
-//    qsrand(QTime::currentTime().elapsed());
-
-////    MainWindow window;
-
-////    window.show();
-
-//    return app.exec();
-//}
-
-
 int main(int argc, char *argv[])
 {
 

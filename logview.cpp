@@ -20,7 +20,7 @@ QTableView *logView::createView(QSqlQueryModel *model, const QString &title = ""
     view->setWindowTitle(title);
     view->setAutoScroll(true);
     view->setWordWrap(true);
-    view->resize(453, 453);
+    view->resize(453, 445);
 
     QHeaderView * header = view->horizontalHeader();
     header->stretchLastSection();

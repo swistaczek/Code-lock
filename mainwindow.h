@@ -6,7 +6,10 @@
 #include <checkthread.h>
 #include <relayb.h>
 #include <logview.h>
+#include <usersview.h>
 #include <QDateTime>
+#include <adduser.h>
+#include <QWaitCondition>
 
 
 QT_BEGIN_NAMESPACE
@@ -37,6 +40,8 @@ private slots:
     void goodPassword();
     void resetKeyboard();
     void truncateLogs();
+    void addUser();
+    void listUsers();
 
     void aboutQt();
 
@@ -45,6 +50,7 @@ private:
     void createMenus();
 
     QMenu *fileMenu;
+    QMenu *usersMenu;
     QMenu *helpMenu;
     QActionGroup *alignmentGroup;
     QAction *newAct;
@@ -52,6 +58,8 @@ private:
     QAction *logsAct;
     QAction *clearLogsAct;
     QAction *exitAct;
+    QAction *listUsersAct;
+    QAction *addUserAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
     QLabel *infoLabel;

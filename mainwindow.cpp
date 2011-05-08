@@ -4,6 +4,7 @@
 RelayB relayboard("/dev/ttyUSB0");
 MainWindow::MainWindow()
 {
+    //createDefaultSqlData();
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
 
@@ -103,7 +104,13 @@ void MainWindow::goodPassword()
     QString dateString = dateTime.toString();
     QString message = tr(": Good password");
     statusBar()->showMessage(dateString + message);
-    relayboard.revertPort(0);
+    relayboard.openPort(0);
+    infoLabel->setText(tr("Lock enabled for 15 sec"));
+    QTime dieTime = QTime::currentTime().addSecs(15);
+    while( QTime::currentTime() < dieTime )
+            QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+    infoLabel->setText(tr("Lock disabled"));
+    relayboard.closePort(0);
 //    QMessageBox::about(this, tr("Password"),
 //            tr("Good password"));
 }
@@ -116,7 +123,17 @@ void MainWindow::resetKeyboard()
 
 void MainWindow::aboutQt()
 {
-    infoLabel->setText(tr("About Qt?"));
+    infoLabel->setText(tr("About Qt"));
+}
+
+void MainWindow::listUsers(){
+    infoLabel->setText(tr("List users"));
+    usersView users;
+}
+
+void MainWindow::addUser(){
+    AddUser *addUserWindow = new AddUser;
+    addUserWindow->show();
 }
 
 void MainWindow::createActions()
@@ -141,10 +158,18 @@ void MainWindow::createActions()
     clearLogsAct->setStatusTip(tr("Clear recent data logs"));
     connect(clearLogsAct, SIGNAL(triggered()), this, SLOT(truncateLogs()));
 
-    exitAct = new QAction(tr("E&xit"), this);
+    exitAct = new QAction(tr("&Exit"), this);
     exitAct->setShortcuts(QKeySequence::Quit);
     exitAct->setStatusTip(tr("Exit the application"));
     connect(exitAct, SIGNAL(triggered()), this, SLOT(close()));
+
+    listUsersAct = new QAction(tr("&List users"), this);
+    listUsersAct->setStatusTip(tr("Lists all keylock users"));
+    connect(listUsersAct, SIGNAL(triggered()), this, SLOT(listUsers()));
+
+    addUserAct = new QAction(tr("&Add user"), this);
+    addUserAct->setStatusTip(tr("Ads new user"));
+    connect(addUserAct, SIGNAL(triggered()), this, SLOT(addUser()));
 
 
     aboutAct = new QAction(tr("&About"), this);
@@ -168,6 +193,10 @@ void MainWindow::createMenus()
     fileMenu->addAction(openAct);
     fileMenu->addSeparator();
     fileMenu->addAction(exitAct);
+
+    usersMenu = menuBar()->addMenu(tr("&Users"));
+    usersMenu->addAction(listUsersAct);
+    usersMenu->addAction(addUserAct);
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(aboutAct);

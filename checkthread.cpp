@@ -18,11 +18,10 @@ void CheckThread::run(){
         input = this->usb_keyboard.getInput();
         cout << "Wpisano i zalogowano: " << input.toStdString() << "\n";
         name = "KazioTestowy";
-        if(input == "123" && stopped != true){
-            addEventToLog(input, name, "1");
+
+        if(checkIfValidCode(input)){
             emit getPassword();
         }else{
-            addEventToLog(input, name, "0");
             emit getBadPassword();
         }
             msleep(200);

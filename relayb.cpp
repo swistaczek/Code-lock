@@ -12,3 +12,13 @@ void RelayB::revertPort(int temp){
     RelayBoardPortInit(this->portName);
     RelayBoardInv(ADRESS,temp);
 }
+
+void RelayB::openPort(int temp){
+    RelayBoardPortInit(this->portName);
+    RelayBoardOn(ADRESS,temp);
+}
+
+void RelayB::closePort(int temp){
+    RelayBoardPortInit(this->portName);
+    RelayBoardOff(ADRESS,temp);
+}

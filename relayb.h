@@ -14,6 +14,8 @@ class RelayB : public QObject
 public:
     explicit RelayB(char* adr, QObject *parent = 0);
     void revertPort(int);
+    void openPort(int);
+    void closePort(int);
 signals:
 
 public slots:

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QMutex>
 #include <keyboard.h>
+#include <connection.h>
 
 class CheckThread : public QThread
 {

@@ -7,7 +7,9 @@ HEADERS       = mainwindow.h \
     rs232.h \
     relayb.h \
     connection.h \
-    logview.h
+    logview.h \
+    adduser.h \
+    usersview.h
 SOURCES       = mainwindow.cpp \
                 main.cpp \
                 keyboard.cpp \
@@ -17,7 +19,9 @@ SOURCES       = mainwindow.cpp \
                 rs232.c \
                 checkthread.cpp \
     relayb.cpp \
-    logview.cpp
+    logview.cpp \
+    adduser.cpp \
+    usersview.cpp
 
 DESTDIR = bin/
 LIBS += -L./BIN
