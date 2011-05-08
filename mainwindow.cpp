@@ -104,13 +104,15 @@ void MainWindow::goodPassword()
     QString dateString = dateTime.toString();
     QString message = tr(": Good password");
     statusBar()->showMessage(dateString + message);
-    relayboard.openPort(0);
+    for(int i=0; i<4; i++)
+        relayboard.openPort(i);
     infoLabel->setText(tr("Lock enabled for 15 sec"));
     QTime dieTime = QTime::currentTime().addSecs(15);
     while( QTime::currentTime() < dieTime )
             QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     infoLabel->setText(tr("Lock disabled"));
-    relayboard.closePort(0);
+    for(int i=0; i<4; i++)
+        relayboard.closePort(i);
 //    QMessageBox::about(this, tr("Password"),
 //            tr("Good password"));
 }

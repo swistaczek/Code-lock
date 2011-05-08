@@ -24,7 +24,7 @@ void Keyboard::init(){
 
     memset(buf,0,sizeof(buf));
 
-    hid_set_nonblocking(this->handle, 0);
+    //hid_set_nonblocking(this->handle, 0);
     hid_read(this->handle, buf, sizeof(buf));
 }
 
