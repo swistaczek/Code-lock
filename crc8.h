@@ -1,9 +1,3 @@
-/*
- * crc8.h
- *
- *  Created on: 2009-04-16
- *      Author: Kuba
- */
 
 #ifndef CRC8_H_
 #define CRC8_H_
